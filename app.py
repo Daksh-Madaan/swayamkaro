@@ -49,8 +49,8 @@ def dashboard():
         admno = session['admno']
         stm = mongo.db.app_users.find_one({'admno': admno})
         est = int(stm['est'])
-        timeone = math.floor(est*(2/3))
-        timetwo = est - timeone
+        timetwo = math.floor(est*(1/3))
+        timeone = est - timetwo
 
         subs = {"English": int(stm['eng']), "Maths": int(stm['maths']), "Science": int(stm['sci']),"SST": int(stm['sst']),"Language": int(stm['lang'])}
         priority = sorted(subs, key=lambda i: int(subs[i]))
