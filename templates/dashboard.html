@@ -36,7 +36,7 @@
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Focus On</h5>
+              <h5 class="card-title">Priority List</h5>
               <p class="card-text">
                 {% for p in priority %}
                 {{ p }}
@@ -74,11 +74,11 @@
             <tr>
               <th scope="row">Mon</th>
               <td>{{ priority[0] }}</td>
-              <td>{{ priority[1] }}</td>
+              <td>{{ priority[2] }}</td>
             </tr>
             <tr>
               <th scope="row">Tue</th>
-              <td>{{ priority[2] }}</td>
+              <td>{{ priority[1] }}</td>
               <td>{{ priority[3] }}</td>
             </tr>
             <tr>
@@ -88,20 +88,16 @@
             </tr>
             <tr>
               <th scope="row">Thu</th>
-              <td>{{ priority[2] }}</td>
+              <td>{{ priority[1] }}</td>
               <td>{{ priority[3] }}</td>
             </tr>
             <tr>
               <th scope="row">Fri</th>
               <td>{{ priority[0] }}</td>
-              <td>{{ priority[1] }}</td>
+              <td>{{ priority[2] }}</td>
             </tr>
           </tbody>
         </table>
-
-
-
-
 
       </div>
     </div>
