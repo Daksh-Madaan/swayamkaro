@@ -6,13 +6,16 @@
     <title>Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;1,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://cdn.glitch.global/a500e480-74ae-4a98-8c4a-c05ebf5db4f4/logo.png?v=1699197795095">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
   <style>
     body {
-      margin-top: 5rem;
-      background-color: #91C8E4;
+      margin-top: 1rem;
+      background: url('https://cdn.glitch.global/a500e480-74ae-4a98-8c4a-c05ebf5db4f4/bg2.png?v=1699174085925') repeat;
+      background-size: 320px 320px!important;
       font-family: 'Ubuntu', sans-serif !important;
     }
     .main {
@@ -20,8 +23,10 @@
       background-color: aliceblue;
       max-width: 70%;
       width: 100%;
+      border: 1px solid #1C6DD0;
       margin: auto;
       border-radius: 20px;
+      box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     }
     h1,h3,h5{
       font-style: italic;
@@ -31,6 +36,12 @@
       border-spacing: 0;
       border: 1px solid black;
     }
+
+    @media only screen and (max-width: 1320px) {
+      body {
+        background-position: 78% 0% !important;
+      }
+    }    
     @media only screen and (max-width: 600px) {
       .main {
         max-width: 95%;
@@ -38,9 +49,72 @@
     }
   </style>
   <body>
-    <div class="main">
+    <div class="main table-responsive-xxl">
       <h1 style="text-align: center; margin-bottom: 5%;">Student Dashboard</h1>
       <div class="row row-cols-1 row-cols-md-2 g-4">
+
+
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Scores(%)</h5>
+              <p class="card-text">
+                {% for i in subs %}
+                {{ i }}
+                {{subs[i]}}
+                <br>
+                {% endfor %}
+              </p>
+              <a class="btn btn-success" href="/update">Update Your Marks and Time</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Personal Reflections</h5>
+            <form action="/dashboard" method="post">
+              <div class="d-flex flex-row-reverse bd-highlight">
+                <p style="font-size: 1.3rem; margin-right: 15px;">😊</p>                
+
+                <p style="font-size: 1.3rem; margin-right: 15px;">🙂</p>  
+                
+                <p style="font-size: 1.3rem; margin-right: 15px;">😓</p>
+              </div>
+              
+                <div class="language d-flex justify-content-between">
+                  <p>Language</p>
+                  <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="lang" value="{{ langR }}">
+                </div>
+
+                <div class="english d-flex justify-content-between">
+                  <p>English</p>
+                  <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="eng" value="{{ engR }}">
+                </div>
+
+                <div class="sst d-flex justify-content-between">
+                  <p>Social Science</p>
+                  <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="sst" value="{{ sstR }}">
+                </div>
+
+                <div class="sci d-flex justify-content-between">
+                  <p>Science</p>
+                  <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="sci" value="{{ sciR }}">
+                </div>
+
+                <div class="maths d-flex justify-content-between">
+                  <p>Maths</p>
+                  <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="maths" value="{{ mathsR }}">
+                </div>
+                 <button type="submit" class="btn btn-success">Rate!</button>
+                </div>
+              
+            </form>
+              
+          </div>
+        </div>
+
         <div class="col">
           <div class="card">
             <div class="card-body">
@@ -54,28 +128,32 @@
             </div>
           </div>
         </div>
+        
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Scores</h5>
-              <p class="card-text">
-                {% for i in subs %}
-                {{ i }}
-                {{subs[i]}}
-                <br>
-                {% endfor %}
-              </p>
+              <h5 class="card-title">Useful Links</h5>
+              <a href="https://ncert.nic.in/textbook.php" target="_blank">NCERT Books</a><br>
+              <a href="https://cbseacademic.nic.in/circulars.html" target="_blank">CBSE Notifications</a><br>
+              
+              <label>Learn something new with:</label>
+              <ul>
+                <li><a href="https://www.skillshare.com/en/" target="_blank">Skillshare</a></li>
+                <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
+                <li><a href="https://www.udemy.com/" target="_blank">Udemy</a></li>
+              </ul>
             </div>
           </div>
         </div>
 
         <h3>Suggested Study Plan</h3>
-        <table class="table table-info table-striped">
+        <table class="table table-bordered border-primary" style="max-width: 65%; margin: auto; margin-top: 1%;">
           <thead>
             <tr>
-              <th scope="col">Days/Subjects</th>
-              <th scope="col">{{ timeone }} Hour(s)</th>
-              <th scope="col">{{ timetwo }} Hour(s)</th>
+              <th scope="col">Days/Slots</th>
+              <th scope="col">{{ slot1 }}Hour(s)</th>
+              <th scope="col">{{ slot2 }}Hour(s)</th>
+              <th scope="col">{{ slot3 }}Hour(s)</th>
             </tr>
           </thead>
           <tbody>
@@ -83,6 +161,7 @@
               <th scope="row">Mon</th>
               <td>{{ priority[0] }}</td>
               <td>{{ priority[2] }}</td>
+              <td rowspan="5">For School Work and <br> Co curricular activities</td>
             </tr>
             <tr>
               <th scope="row">Tue</th>
