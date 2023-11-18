@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 from flask_pymongo import PyMongo
+from quotes import quotes
+import random
 import math
 
 app = Flask(__name__)
@@ -113,13 +115,17 @@ def dashboard():
         langR = stm['langR']
         sciR = stm['sciR']
         sstR = stm['sstR']
+
+        quote = random.choice(quotes)
+
                                   
         return render_template('dashboard.html', admno=admno, subs=subs, priority=priority, slot1=slot1, slot2=slot2, slot3=slot3, 
                                engR=engR,
                                mathsR=mathsR,
                                langR=langR,
                                sciR=sciR,
-                               sstR=sstR)
+                               sstR=sstR,
+                               quote=quote)
         
     
     return redirect(url_for('home'))
