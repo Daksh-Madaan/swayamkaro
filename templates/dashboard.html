@@ -1,195 +1,227 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;1,700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://cdn.glitch.global/a500e480-74ae-4a98-8c4a-c05ebf5db4f4/logo.png?v=1699197795095">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  </head>
-  <style>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;1,700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://cdn.glitch.global/a500e480-74ae-4a98-8c4a-c05ebf5db4f4/logo.png?v=1699197795095">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<style>
+  body {
+    margin-top: 1rem;
+    background: url('https://cdn.glitch.global/a500e480-74ae-4a98-8c4a-c05ebf5db4f4/bg2.png?v=1699174085925') repeat;
+    background-size: 320px 320px !important;
+    font-family: 'Ubuntu', sans-serif !important;
+  }
+
+  .main {
+    padding: 3%;
+    background-color: aliceblue;
+    max-width: 70%;
+    width: 100%;
+    border: 1px solid #1C6DD0;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  }
+
+  h1,
+  h3,
+  h5 {
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  table {
+    border-spacing: 0;
+    border: 1px solid black;
+  }
+
+  @media only screen and (max-width: 1320px) {
     body {
-      margin-top: 1rem;
-      background: url('https://cdn.glitch.global/a500e480-74ae-4a98-8c4a-c05ebf5db4f4/bg2.png?v=1699174085925') repeat;
-      background-size: 320px 320px!important;
-      font-family: 'Ubuntu', sans-serif !important;
+      background-position: 78% 0% !important;
     }
+  }
+
+  @media only screen and (max-width: 600px) {
     .main {
-      padding: 3%;
-      background-color: aliceblue;
-      max-width: 70%;
-      width: 100%;
-      border: 1px solid #1C6DD0;
-      margin: auto;
-      border-radius: 20px;
-      box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+      max-width: 95%;
     }
-    h1,h3,h5{
-      font-style: italic;
-      font-weight: 700;
-    }
-    table {
-      border-spacing: 0;
-      border: 1px solid black;
-    }
+  }
+</style>
 
-    @media only screen and (max-width: 1320px) {
-      body {
-        background-position: 78% 0% !important;
-      }
-    }    
-    @media only screen and (max-width: 600px) {
-      .main {
-        max-width: 95%;
-      }
-    }
-  </style>
-  <body>
-    <div class="main table-responsive-xxl">
-      <h1 style="text-align: center; margin-bottom: 5%;">Student Dashboard</h1>
-      <div class="alert alert-primary text-center" role="alert">
-        {{ quote }}
+<body>
+  <div class="main table-responsive-xxl">
+    <h1 style="text-align: center; margin-bottom: 3%;">Student Dashboard</h1>
+    <div class="alert alert-primary text-center" role="alert">
+      {{ quote }}
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-bottom: 2%;">
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Scores(%)</h5>
+            <p class="card-text">
+              {% for i in subs %}
+              <b>{{ i }}</b>
+              -
+              {{subs[i]}} %
+              <br>
+              {% endfor %}
+            </p>
+            <a class="btn btn-success" href="/update">Update Your Marks and Time</a>
+          </div>
+        </div>
       </div>
-      
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Scores(%)</h5>
-              <p class="card-text">
-                {% for i in subs %}
-                {{ i }}
-                {{subs[i]}}
-                <br>
-                {% endfor %}
-              </p>
-              <a class="btn btn-success" href="/update">Update Your Marks and Time</a>
-            </div>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Priority Sequence</h5>
+            <p class="card-text">
+              {% for p in priority %}
+              {{ p }}
+              <br>
+              {% endfor %}
+            </p>
           </div>
         </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title text-center">Useful Links</h5>
+            <a href="https://ncert.nic.in/textbook.php" target="_blank">NCERT Books</a><br>
+            <a href="https://cbseacademic.nic.in/circulars.html" target="_blank">CBSE Notifications</a><br>
 
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Personal Reflections</h5>
-            <form action="/dashboard" method="post">
-              <div class="d-flex flex-row-reverse bd-highlight">
-                <p style="font-size: 1.3rem; margin-right: 15px;">😊</p>                
-
-                <p style="font-size: 1.3rem; margin-right: 15px;">🙂</p>  
-                
-                <p style="font-size: 1.3rem; margin-right: 15px;">😓</p>
-              </div>
-              
-                <div class="language d-flex justify-content-between">
-                  <p>Language</p>
-                  <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="lang" value="{{ langR }}">
-                </div>
-
-                <div class="english d-flex justify-content-between">
-                  <p>English</p>
-                  <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="eng" value="{{ engR }}">
-                </div>
-
-                <div class="sst d-flex justify-content-between">
-                  <p>Social Science</p>
-                  <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="sst" value="{{ sstR }}">
-                </div>
-
-                <div class="sci d-flex justify-content-between">
-                  <p>Science</p>
-                  <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="sci" value="{{ sciR }}">
-                </div>
-
-                <div class="maths d-flex justify-content-between">
-                  <p>Maths</p>
-                  <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="maths" value="{{ mathsR }}">
-                </div>
-                 <button type="submit" class="btn btn-success">Rate!</button>
-                </div>
-              
-            </form>
-              
+            <label>Learn something new with:</label>
+            <ul>
+              <li><a href="https://www.skillshare.com/en/" target="_blank">Skillshare</a></li>
+              <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
+              <li><a href="https://www.udemy.com/" target="_blank">Udemy</a></li>
+            </ul>
           </div>
         </div>
-
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Priority List</h5>
-              <p class="card-text">
-                {% for p in priority %}
-                {{ p }}
-                <br>
-                {% endfor %}
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Useful Links</h5>
-              <a href="https://ncert.nic.in/textbook.php" target="_blank">NCERT Books</a><br>
-              <a href="https://cbseacademic.nic.in/circulars.html" target="_blank">CBSE Notifications</a><br>
-              
-              <label>Learn something new with:</label>
-              <ul>
-                <li><a href="https://www.skillshare.com/en/" target="_blank">Skillshare</a></li>
-                <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
-                <li><a href="https://www.udemy.com/" target="_blank">Udemy</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <h3>Suggested Study Plan</h3>
-        <table class="table table-bordered border-primary" style="max-width: 65%; margin: auto; margin-top: 1%;">
-          <thead>
-            <tr>
-              <th scope="col">Days/Slots</th>
-              <th scope="col">{{ slot1 }}Hour(s)</th>
-              <th scope="col">{{ slot2 }}Hour(s)</th>
-              <th scope="col">{{ slot3 }}Hour(s)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Mon</th>
-              <td>{{ priority[0] }}</td>
-              <td>{{ priority[2] }}</td>
-              <td rowspan="5">For School Work and <br> Co curricular activities</td>
-            </tr>
-            <tr>
-              <th scope="row">Tue</th>
-              <td>{{ priority[1] }}</td>
-              <td>{{ priority[3] }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Wed</th>
-              <td>{{ priority[0] }}</td>
-              <td>{{ priority[4] }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Thu</th>
-              <td>{{ priority[1] }}</td>
-              <td>{{ priority[3] }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Fri</th>
-              <td>{{ priority[0] }}</td>
-              <td>{{ priority[2] }}</td>
-            </tr>
-          </tbody>
-        </table>
-
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+
+    <div class="col w-75 mx-auto" style="margin-bottom: 2%;">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Suggested Study Plan</h5>
+
+          <table class="table table-bordered border-primary" style="max-width: 65%; margin: auto; margin-top: 1%;">
+            <thead>
+              <tr>
+                <th scope="col">Days/Slots</th>
+                <th scope="col">{{ slot1 }}Hour(s)</th>
+                <th scope="col">{{ slot2 }}Hour(s)</th>
+                <th scope="col">{{ slot3 }}Hour(s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Mon</th>
+                <td>{{ priority[0] }}</td>
+                <td>{{ priority[2] }}</td>
+                <td rowspan="5">For School Work and <br> Co curricular activities</td>
+              </tr>
+              <tr>
+                <th scope="row">Tue</th>
+                <td>{{ priority[1] }}</td>
+                <td>{{ priority[3] }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Wed</th>
+                <td>{{ priority[0] }}</td>
+                <td>{{ priority[4] }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Thu</th>
+                <td>{{ priority[1] }}</td>
+                <td>{{ priority[3] }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Fri</th>
+                <td>{{ priority[0] }}</td>
+                <td>{{ priority[2] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col w-75 mx-auto">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Personal Reflections</h5>
+          <form action="/dashboard" method="post">
+            <div class="d-flex flex-row-reverse bd-highlight">
+              <p style="font-size: 1.3rem; margin-right: 15px;">😊</p>
+
+              <p style="font-size: 1.3rem; margin-right: 15px;">🙂</p>
+
+              <p style="font-size: 1.3rem; margin-right: 15px;">😓</p>
+            </div>
+
+            <div class="language d-flex justify-content-between">
+              <p><b>Language</b></p>
+              <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="lang"
+                value="{{ langR }}">
+            </div>
+
+            <div class="english d-flex justify-content-between">
+              <p><b>English</b></p>
+              <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="eng"
+                value="{{ engR }}">
+            </div>
+
+            <div class="sst d-flex justify-content-between">
+              <p><b>Social Science</b></p>
+              <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="sst"
+                value="{{ sstR }}">
+            </div>
+
+            <div class="sci d-flex justify-content-between">
+              <p><b>Science</b></p>
+              <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="sci"
+                value="{{ sciR }}">
+            </div>
+
+            <div class="maths d-flex justify-content-between">
+              <p><b>Maths</b></p>
+              <input type="range" class="form-range" min="0" max="5" step="1" style="max-width: 125px;" name="maths"
+                value="{{ mathsR }}">
+            </div>
+
+            <div class="mb-3 text-center">
+              <label for="exampleFormControlInput1" class="form-label"><b>Personal Goal</b></label>
+              <input class="form-control" id="exampleFormControlInput1" value="{{ goal }}" name="goal">
+            </div>
+            <div class="mb-3 text-center">
+              <label for="exampleFormControlTextarea1" class="form-label"><b>Self-Note</b></label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="note">{{ note }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">Update!</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
