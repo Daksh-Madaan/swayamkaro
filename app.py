@@ -9,8 +9,8 @@ app.config['MONGO_DBNAME'] = 'StudentDB'
 app.config['MONGO_URI'] = 'mongodb+srv://admin:xwPZ20bmjBBr2kBE@studentdb.xl39sis.mongodb.net/StudentDB?retryWrites=true&w=majority'
 
 app.secret_key = 'stm'
-
 mongo = PyMongo(app)
+
 
 @app.route('/')
 def home():
@@ -23,17 +23,19 @@ def register():
             mm = int(request.form['mm'])
             mongo.db.app_users.insert_one({'admno': request.form['admno'],
                                            'password': request.form['regPassword'],
-                                           'eng': (int(request.form['eng'])/mm)*100,
-                                           'maths': (int(request.form['maths'])/mm)*100,
-                                           'sci': (int(request.form['sci'])/mm)*100,
-                                           'sst': (int(request.form['sst'])/mm)*100,
-                                           'lang': (int(request.form['lang'])/mm)*100,
+                                           'eng': (int(request.form['eng'])/mm)*100.0,
+                                           'maths': (int(request.form['maths'])/mm)*100.0,
+                                           'sci': (int(request.form['sci'])/mm)*100.0,
+                                           'sst': (int(request.form['sst'])/mm)*100.0,
+                                           'lang': (int(request.form['lang'])/mm)*100.0,
                                            'est': request.form['est'],
                                           'engR': 0,
                                           'mathsR': 0,
                                           'sciR': 0,
                                           'sstR': 0,
-                                          'langR': 0})
+                                          'langR': 0,
+                                          'goal': '',
+                                          'note': ''})
 
             return redirect(url_for('login'))
         
@@ -101,8 +103,10 @@ def dashboard():
                         'mathsR': request.form['maths'],
                         'sciR': request.form['sci'],
                         'sstR': request.form['sst'],
-                        'langR': request.form['lang']}
-          print(request.form['lang'])
+                        'langR': request.form['lang'],
+                        'goal': request.form['goal'],
+                        'note': request.form['note']}
+          
                     
           mongo.db.app_users.update_one({'admno': admno},{'$set': update})
           return redirect(url_for('dashboard'))
@@ -115,6 +119,8 @@ def dashboard():
         langR = stm['langR']
         sciR = stm['sciR']
         sstR = stm['sstR']
+        note = stm['note']
+        goal = stm['goal']
 
         quote = random.choice(quotes)
 
@@ -125,7 +131,9 @@ def dashboard():
                                langR=langR,
                                sciR=sciR,
                                sstR=sstR,
-                               quote=quote)
+                               quote=quote,
+                               note = note,
+                               goal = goal)
         
     
     return redirect(url_for('home'))
