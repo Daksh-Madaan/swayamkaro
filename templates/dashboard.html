@@ -58,7 +58,7 @@
 </style>
 
 <body>
-  <div class="main table-responsive-xxl">
+  <div class="main">
     <h1 style="text-align: center; margin-bottom: 3%;">Student Dashboard</h1>
     <div class="alert alert-primary text-center" role="alert">
       {{ quote }}
@@ -112,12 +112,8 @@
       </div>
     </div>
 
-    <div class="col w-75 mx-auto" style="margin-bottom: 2%;">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">Suggested Study Plan</h5>
-
-          <table class="table table-bordered border-primary" style="max-width: 65%; margin: auto; margin-top: 1%;">
+      <h5 class="card-title text-center mb-2 mt-2">Suggested Study Plan</h5>
+        <table class="table table-bordered border-primary text-center table-sm" style="width: 45%; margin: auto; margin-bottom: 4%;">
             <thead>
               <tr>
                 <th scope="col">Days/Slots</th>
@@ -155,10 +151,9 @@
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
-    <div class="col w-75 mx-auto">
+          
+
+    <div class="col mx-auto">
       <div class="card">
         <div class="card-body text-center">
           <h5 class="card-title">Personal Reflections</h5>
