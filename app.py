@@ -124,17 +124,24 @@ def dashboard():
 
         quote = random.choice(quotes)
 
-                                  
-        return render_template('dashboard.html', admno=admno, subs=subs, priority=priority, slot1=slot1, slot2=slot2, slot3=slot3, 
-                               engR=engR,
-                               mathsR=mathsR,
-                               langR=langR,
-                               sciR=sciR,
-                               sstR=sstR,
-                               quote=quote,
-                               note = note,
-                               goal = goal)
         
+        site_variables = {'admno':admno, 
+                               'subs':subs, 
+                               'priority' :priority, 
+                               'slot1' :slot1, 
+                               'slot2' :slot2, 
+                               'slot3' :slot3, 
+                               'engR' :engR,
+                               'mathsR' :mathsR,
+                               'langR' :langR,
+                               'sciR' :sciR,
+                               'sstR' :sstR,
+                               'quote' :quote,
+                               'note' : note,
+                               'goal' : goal}
+                                
+        return render_template('dashboard.html', **site_variables)
+                              
     
     return redirect(url_for('home'))
 
